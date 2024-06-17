@@ -1,0 +1,3 @@
+Hiii, Good Morning.
+How are you ?
+This is sample text file creating for practicing File Handling in Python.
