@@ -1,0 +1,383 @@
+//Quadratic roots
+import java.util.Scanner;
+public class Quadratic{
+    public static void main(String[] args){
+        int a,b,c;
+        Scanner input=new Scanner(System.in);
+        System.out.print("Enter the value of a : ");
+        a=input.nextInt();
+        System.out.print("Enter the value of b : ");
+        b=input.nextInt();
+        System.out.print("Enter the value of c : ");
+        c=input.nextInt();
+        int d=(b*b)-4*a*c;
+        if(d>0){
+            System.out.println("Root are real and distinct");
+            float r1= (float) ((-b+Math.sqrt(d))/2*a);
+            float r2= (float) ((-b-Math.sqrt(d))/2*a);
+            System.out.println("Root 1 : "+r1+"\nRoot 2 : "+r2);
+        }
+        else if (d==0){
+            System.out.println("Roots are real and equal");
+            float r1=-b;
+            float r2=-b;
+            System.out.println("Root 1 : "+r1+"\nRoot 2 : "+r2);
+        }
+        else{
+            System.out.println("Roots are imaginary");
+        }
+    }
+}
+
+
+
+//Fibonacci series
+import java.util.Scanner;
+public class Fibonacci{
+    public static void main(String[] args){
+        int a=1,b=1,c=0;
+        Scanner input=new Scanner(System.in);
+        System.out.print("Enter a value : ");
+        int n=input.nextInt();
+        nonRecFibo(n,a,b,c);
+        recFibo(n,a,b,c);
+    }
+    public static void nonRecFibo(int n,int a,int b,int c){
+        for(int i=1;i<=n-2;i++){
+            c=a+b;
+            a=b;
+            b=c;
+        }
+        System.out.println("nth Value without using Recursion : "+c);
+    }
+    public static void recFibo(int n,int a,int b,int c){
+        if (n-2>0){
+            c=a+b;
+            a=b;
+            b=c;
+            recFibo(n-1,a,b,c);
+            return;
+        }
+        else {
+            System.out.println("nth Value using Recursion : "+c);
+        }
+
+    }
+}
+
+
+
+
+//Prime numbers
+import java.util.Scanner;
+public class Prime{
+    public static void main(String[] args){
+        Scanner input=new Scanner(System.in);
+        System.out.print("Enter the value of n : ");
+        int n=input.nextInt();
+        System.out.print("Prime numbers : ");
+        for (int i=2;i<=n;i++){
+            if(isPrime(i))
+                System.out.print(i+" ");
+        }
+    }
+    public static boolean isPrime(int n){
+        for (int i=2;i<=n/2;i++){
+            if(n%i==0)
+                return false;
+        }
+        return true;
+    }
+}
+
+
+
+//Palindrome
+import java.util.Scanner;
+public class Palindrome{
+    public static void main(String[] args){
+        Scanner input=new Scanner(System.in);
+        System.out.print("Enter a string : ");
+        String str=input.next();
+        if (isPalindrome(str))
+            System.out.println("Palindrome");
+        else
+            System.out.println("Not a palindrome");
+    }
+    public static boolean isPalindrome(String str){
+        int length=str.length();
+        for (int i=0;i<length/2;i++){
+            if(str.charAt(i)!=str.charAt(length-i-1))
+                return false;
+        }
+        return true;
+    }
+}
+
+
+
+//method overloading using static method
+public class StaticMethodOverloading{
+    public static void main(String[] args){
+        System.out.println("Area : "+Area.tarea(10));
+        System.out.println("Area : "+Area.tarea(10,20));
+        System.out.println("Area : "+Area.tarea(100,100,100));
+    }
+}
+class Area{
+    static double tarea(double a){
+        double area;
+        area=1.732*a*a;
+        return area;
+    }
+    static double tarea(double a,double b){
+        double area;
+        area=a*b/2;
+        return area;
+    }
+    static double tarea(double a,double b,double c){
+        double area,s;
+        s=(a+b+c)/2;
+        area=Math.sqrt(s*(s-a)*(s-b)*(s-c));
+        return area;
+    }
+}
+
+
+//Method overloading within a class
+public class MethodOverloadingWithinClass{
+    public static void main(String[] args){
+        tarea(10);
+        tarea(10,20);
+        tarea(100,100,100);
+    }
+    static void tarea(double a){
+        double area;
+        area=1.732*a*a;
+        System.out.println("Area : "+area);
+    }
+    static void tarea(double a,double b){
+        double area;
+        area=a*b/2;
+        System.out.println("Area : "+area);
+    }
+    static void tarea(double a,double b,double c) {
+        double area, s;
+        s = (a + b + c) / 2;
+        area = Math.sqrt(s * (s - a) * (s - b) * (s - c));
+        System.out.println("Area : " + area);
+    }
+}
+
+
+//Abstract class
+public class AbstractClass{
+    public static void main(String[] args){
+        Rectangle r=new Rectangle();
+        Triangle t=new Triangle();
+        Circle c=new Circle();
+        r.printArea(2,5);
+        t.printArea(5,5);
+        c.printArea(2,5);
+    }
+}
+abstract class Shape{
+    int x,y;
+    abstract void printArea(int x,int y);
+}
+class Rectangle extends Shape{
+    void printArea(int x,int y){
+        System.out.println("Area of Rectangle : "+(x*y));
+    }
+}
+class Triangle extends Shape{
+    void printArea(int x,int y){
+        System.out.println("Area of Triangle : "+(x*y*0.5));
+    }
+}class Circle extends Shape{
+    void printArea(int x,int y){
+        System.out.println("Area of Circle : "+(3.14*x*x));
+    }
+}
+
+
+//Bank account
+public class BankAccount {
+    public static void main(String[] args){
+        Bank b1=new Bank();
+        b1.deposit(150);
+        b1.withdraw(450);
+        b1.getInfo();
+    }
+}
+class Bank{
+    static int acc_no=10001;
+    double amount=1000;
+    Bank(){
+        System.out.println("Your account is created with account no : "+acc_no);
+        acc_no++;
+    }
+    void getInfo(){
+        System.out.println("Your account Number : "+acc_no);
+        System.out.println("Your account Balance : "+amount);
+    }
+    void getAmount(){
+        System.out.println("Your account balance : "+amount);
+    }
+    void withdraw(float x){
+        if (amount==100||amount<=x){
+            System.out.println("You cannot withdraw");
+        }
+        else{
+            amount-=x;
+            System.out.println("Amount withdrawn : "+x);
+            getAmount();
+        }
+    }
+    void deposit(float x){
+        if (x<=0){
+            System.out.println("OOPs you cannot deposit that amount");
+        }
+        else {
+            amount+=x;
+            System.out.println("Amount deposited : "+x);
+            getAmount();
+        }
+    }
+}
+
+
+//String functions
+public class StringFunctions{
+    public static void main(String[] args){
+        String str="Hyderabad is a capital of Telangana";
+        System.out.println("Original String : "+str);
+        System.out.println("To Upper case : "+str.toUpperCase());
+        System.out.println("To lower case : "+str.toLowerCase());
+        System.out.println("Substring : "+str.substring(10));
+        System.out.println("Substring : "+str.substring(10,14));
+        System.out.println("Index of Capital : "+str.indexOf("capital"));
+        str=" "+str+" str";
+        System.out.println("["+str.trim()+"]");
+        System.out.println("Replace : "+str.replace("a","@"));
+        System.out.println("Reverse : "+new StringBuffer(str).reverse());
+    }
+}
+
+
+//Sqare, cube, and random Thread
+import java.util.Random;
+public class MainThread{
+    public static void main(String[] args){
+        RandomThread obj=new RandomThread();
+        Thread t=new Thread(obj);
+        t.start();
+    }
+}
+class SquareThread implements Runnable{
+    int x;
+    SquareThread(int x){
+        this.x=x;
+    }
+    public void run(){
+        System.out.println("Thread Name : Square Thread and square of "+this.x+" : "+(this.x*this.x));
+    }
+}
+class CubeThread implements Runnable{
+    int x;
+    CubeThread(int x){
+        this.x=x;
+    }
+    public void run(){
+        System.out.println("Thread Name : Square Thread and square of "+this.x+" : "+(this.x*this.x*this.x));
+    }
+}
+class RandomThread implements Runnable{
+    Random r;
+    Thread t1,t2;
+    public void run(){
+        r=new Random();
+        try {
+            while (true){
+                int num=r.nextInt(100);
+                System.out.println("Random Thread and Generated Number : "+num);
+                t1=new Thread(new SquareThread(num));
+                t1.start();
+                t2=new Thread(new CubeThread(num));
+                t2.start();
+                Thread.sleep(100);
+                System.out.println("_______________________________________________");
+
+            }
+        }
+        catch (Exception e){
+            System.out.println("Interruption occured");
+        }
+    }
+}
+
+
+//Producer consumer problem
+import java.util.LinkedList;
+public class Sample{
+    public static void main(String[] args) throws InterruptedException{
+        PC pc=new PC();
+        Thread t1=new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    pc.produce();
+                }
+                catch (Exception e){
+                    System.out.println("Exception occured");
+                }
+            }
+        });
+        Thread t2=new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try{
+                    pc.consume();
+                }
+                catch (Exception e){
+                    System.out.println("Exception occured");
+                }
+            }
+        });
+        t1.start();
+        t2.start();
+        t1.join();
+        t2.join();
+    }
+}
+class PC{
+    LinkedList<Integer> list=new LinkedList<>();
+    int capacity=2;
+    void produce() throws InterruptedException{
+        int value=0;
+        while (true){
+            synchronized (this){
+                if(list.size()==capacity){
+                    wait();
+                }
+                System.out.println("Producer produced "+value);
+                list.add(value++);
+                notify();
+                Thread.sleep(100);
+            }
+        }
+    }
+    void consume() throws InterruptedException{
+        while (true){
+            synchronized (this){
+                if(list.size()==0)
+                    wait();
+                int value=list.removeFirst();
+                System.out.println("Consumer consumed "+value);
+                notify();
+                Thread.sleep(100);
+            }
+        }
+    }
+}
+

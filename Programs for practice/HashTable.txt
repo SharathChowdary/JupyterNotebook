@@ -1,0 +1,23 @@
+import java.util.Hashtable;
+import java.util.Map;
+import java.util.Set;
+
+public class HashTable{
+    public static void main(String[] args){
+        Map<String,String> contacts=new Hashtable<>();
+        contacts.put("Vinay","55555");
+        contacts.put("Rahul","44444");
+        contacts.put("Sai kiran","99999");
+        System.out.println("Fetching values using normal keyset");
+        Set<String> keys=contacts.keySet();
+        for (String key : keys){
+            System.out.println(key+" : "+contacts.get(key));
+        }
+        System.out.println("Fetching values using Entryset");
+        Set<Map.Entry<String,String>> values=contacts.entrySet();
+        for (Map.Entry<String,String> e:values){
+            System.out.println(e.getKey()+" : "+e.getValue());
+        }
+
+    }
+}
